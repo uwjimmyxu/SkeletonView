@@ -4,14 +4,6 @@ import UIKit
 
 public extension UIView {
     
-    var appearanceTintColor: UIColor {
-        return SkeletonAppearance.default.tintColor(traitCollection)
-    }
-    
-    var appearanceGradient: SkeletonGradient {
-        return SkeletonAppearance.default.gradient(traitCollection)
-    }
-    
     /// Shows the skeleton without animation using the view that calls this method as root view.
     ///
     /// - Parameters:

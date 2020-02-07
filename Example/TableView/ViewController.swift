@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         didSet {
             colorSelectedView.layer.cornerRadius = 5
             colorSelectedView.layer.masksToBounds = true
-            colorSelectedView.backgroundColor = SkeletonAppearance.default.tintColor
+            colorSelectedView.backgroundColor = appearanceTintColor
         }
     }
 
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         
         let action = UIAlertAction(title: "OK", style: .default) { [unowned pickerView, unowned self] _ in
             let row = pickerView.selectedRow(inComponent: 0)
-            self.colorSelectedView.backgroundColor = colors[row].0
+            self.colorSelectedView.backgroundColor = self.colors[row].0
             self.refreshSkeleton()
         }
         alertView.addAction(action)

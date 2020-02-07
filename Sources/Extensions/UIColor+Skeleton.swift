@@ -78,3 +78,23 @@ public extension UIColor {
     }
 }
 // codebeat:enable[TOO_MANY_IVARS]
+
+public extension UIView {
+    var appearanceTintColor: UIColor {
+        return SkeletonAppearance.default.tintColor(traitCollection)
+    }
+    
+    var appearanceGradient: SkeletonGradient {
+        return SkeletonAppearance.default.gradient(traitCollection)
+    }
+}
+
+public extension UIViewController {
+    var appearanceTintColor: UIColor {
+        return SkeletonAppearance.default.tintColor(traitCollection)
+    }
+    
+    var appearanceGradient: SkeletonGradient {
+        return SkeletonAppearance.default.gradient(traitCollection)
+    }
+}
