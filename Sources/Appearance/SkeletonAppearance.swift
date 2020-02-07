@@ -3,12 +3,13 @@
 import UIKit
 
 public protocol Appearance {
-    var tintColor: UIColor { get set }
-    var gradient: SkeletonGradient { get set }
     var multilineHeight: CGFloat { get set }
     var multilineSpacing: CGFloat { get set }
     var multilineLastLineFillPercent: Int { get set }
     var multilineCornerRadius: Int { get set }
+    
+    func tintColor(_ traitCollection: UITraitCollection) -> UIColor
+    func gradient(_ traitCollection: UITraitCollection) -> SkeletonGradient
 }
 
 public enum SkeletonAppearance {
@@ -19,10 +20,6 @@ public enum SkeletonAppearance {
 class SkeletonViewAppearance: Appearance {
     static var shared = SkeletonViewAppearance()
 
-    var tintColor: UIColor = .skeletonDefault
-
-    var gradient: SkeletonGradient = SkeletonGradient(baseColor: .skeletonDefault)
-
     var multilineHeight: CGFloat = 15
 
     var multilineSpacing: CGFloat = 10
@@ -30,5 +27,13 @@ class SkeletonViewAppearance: Appearance {
     var multilineLastLineFillPercent: Int = 70
 
     var multilineCornerRadius: Int = 0
+    
+    func tintColor(_ traitCollection: UITraitCollection) -> UIColor {
+        return .skeletonDefault(traitCollection: traitCollection)
+    }
+    
+    func gradient(_ traitCollection: UITraitCollection) -> SkeletonGradient {
+        return SkeletonGradient(baseColor: .skeletonDefault(traitCollection: traitCollection))
+    }
 }
 // codebeat:enable[TOO_MANY_IVARS]

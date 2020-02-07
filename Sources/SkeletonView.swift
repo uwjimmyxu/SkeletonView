@@ -3,13 +3,23 @@
 import UIKit
 
 public extension UIView {
+    
+    var appearanceTintColor: UIColor {
+        return SkeletonAppearance.default.tintColor(traitCollection)
+    }
+    
+    var appearanceGradient: SkeletonGradient {
+        return SkeletonAppearance.default.gradient(traitCollection)
+    }
+    
     /// Shows the skeleton without animation using the view that calls this method as root view.
     ///
     /// - Parameters:
     ///   - color: The color of the skeleton. Defaults to `SkeletonAppearance.default.tintColor`.
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.none`.
-    func showSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, transition: SkeletonTransitionStyle = .none) {
-        let config = SkeletonConfig(type: .solid, colors: [color], transition: transition)
+    func showSkeleton(usingColor color: UIColor? = nil, transition: SkeletonTransitionStyle = .none) {
+        let mutatedColor = color ?? appearanceTintColor
+        let config = SkeletonConfig(type: .solid, colors: [mutatedColor], transition: transition)
         showSkeleton(skeletonConfig: config)
     }
     
@@ -18,8 +28,9 @@ public extension UIView {
     /// - Parameters:
     ///   - gradient: The gradient of the skeleton. Defaults to `SkeletonAppearance.default.gradient`.
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.none`.
-    func showGradientSkeleton(usingGradient gradient: SkeletonGradient = SkeletonAppearance.default.gradient, transition: SkeletonTransitionStyle = .none) {
-        let config = SkeletonConfig(type: .gradient, colors: gradient.colors, transition: transition)
+    func showGradientSkeleton(usingGradient gradient: SkeletonGradient? = nil, transition: SkeletonTransitionStyle = .none) {
+        let mutatedGradient = gradient ?? appearanceGradient
+        let config = SkeletonConfig(type: .gradient, colors: mutatedGradient.colors, transition: transition)
         showSkeleton(skeletonConfig: config)
     }
     
@@ -31,8 +42,9 @@ public extension UIView {
     ///   - color: The color of skeleton. Defaults to `SkeletonAppearance.default.tintColor`.
     ///   - animation: The animation of the skeleton. Defaults to `nil`.
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.none`.
-    func showAnimatedSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, animation: SkeletonLayerAnimation? = nil, transition: SkeletonTransitionStyle = .none) {
-        let config = SkeletonConfig(type: .solid, colors: [color], animated: true, animation: animation, transition: transition)
+    func showAnimatedSkeleton(usingColor color: UIColor? = nil, animation: SkeletonLayerAnimation? = nil, transition: SkeletonTransitionStyle = .none) {
+        let mutatedColor = color ?? appearanceTintColor
+        let config = SkeletonConfig(type: .solid, colors: [mutatedColor], animated: true, animation: animation, transition: transition)
         showSkeleton(skeletonConfig: config)
     }
     
@@ -44,28 +56,33 @@ public extension UIView {
     ///   - gradient: The gradient of the skeleton. Defaults to `SkeletonAppearance.default.gradient`.
     ///   - animation: The animation of the skeleton. Defaults to `nil`.
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.none`.
-    func showAnimatedGradientSkeleton(usingGradient gradient: SkeletonGradient = SkeletonAppearance.default.gradient, animation: SkeletonLayerAnimation? = nil, transition: SkeletonTransitionStyle = .none) {
-        let config = SkeletonConfig(type: .gradient, colors: gradient.colors, animated: true, animation: animation, transition: transition)
+    func showAnimatedGradientSkeleton(usingGradient gradient: SkeletonGradient? = nil, animation: SkeletonLayerAnimation? = nil, transition: SkeletonTransitionStyle = .none) {
+        let mutatedGradient = gradient ?? appearanceGradient
+        let config = SkeletonConfig(type: .gradient, colors: mutatedGradient.colors, animated: true, animation: animation, transition: transition)
         showSkeleton(skeletonConfig: config)
     }
 
-    func updateSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor) {
-        let config = SkeletonConfig(type: .solid, colors: [color])
+    func updateSkeleton(usingColor color: UIColor? = nil) {
+        let mutatedColor = color ?? appearanceTintColor
+        let config = SkeletonConfig(type: .solid, colors: [mutatedColor])
         updateSkeleton(skeletonConfig: config)
     }
 
-    func updateGradientSkeleton(usingGradient gradient: SkeletonGradient = SkeletonAppearance.default.gradient) {
-        let config = SkeletonConfig(type: .gradient, colors: gradient.colors)
+    func updateGradientSkeleton(usingGradient gradient: SkeletonGradient? = nil) {
+        let mutatedGradient = gradient ?? appearanceGradient
+        let config = SkeletonConfig(type: .gradient, colors: mutatedGradient.colors)
         updateSkeleton(skeletonConfig: config)
     }
 
-    func updateAnimatedSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, animation: SkeletonLayerAnimation? = nil) {
-        let config = SkeletonConfig(type: .solid, colors: [color], animated: true, animation: animation)
+    func updateAnimatedSkeleton(usingColor color: UIColor? = nil, animation: SkeletonLayerAnimation? = nil) {
+        let mutatedColor = color ?? appearanceTintColor
+        let config = SkeletonConfig(type: .solid, colors: [mutatedColor], animated: true, animation: animation)
         updateSkeleton(skeletonConfig: config)
     }
 
-    func updateAnimatedGradientSkeleton(usingGradient gradient: SkeletonGradient = SkeletonAppearance.default.gradient, animation: SkeletonLayerAnimation? = nil) {
-        let config = SkeletonConfig(type: .gradient, colors: gradient.colors, animated: true, animation: animation)
+    func updateAnimatedGradientSkeleton(usingGradient gradient: SkeletonGradient? = nil, animation: SkeletonLayerAnimation? = nil) {
+        let mutatedGradient = gradient ?? appearanceGradient
+        let config = SkeletonConfig(type: .gradient, colors: mutatedGradient.colors, animated: true, animation: animation)
         updateSkeleton(skeletonConfig: config)
     }
 
