@@ -1,0 +1,10 @@
+platform :ios
+
+target 'SkeletonViewExample' do
+  pod "SkeletonView"
+end
+
+target 'SkeletonViewExampleTests' do
+  # Expose the ExampleLib to the test target too.
+  pod "SkeletonView"
+end
